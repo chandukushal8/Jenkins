@@ -1,0 +1,30 @@
+########################  Declarative Syntax #################################
+
+pipeline{
+
+      // agent any	
+    agent { label "slave1"}
+    
+    
+    stages {
+        
+        stage("Cloning git repository"){
+            steps{
+                git branch: 'main', credentialsId: 'git_credentials', url: 'https://github.com/naveen-uppala/customer.git'
+            }
+        } 
+    }    
+
+}    
+
+######################## Scripted Syntax #################################
+
+
+node('Slave-1') {
+
+        stage("Cloning git repository") {
+            git branch: 'main', credentialsId: 'github_credentials', url: 'https://github.com/naveen-uppala/customer.git'
+        }
+
+
+}
